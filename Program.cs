@@ -95,18 +95,18 @@ namespace Assignment_1_SP21
             {
                 int n = no.Length;
 
-                // hashset to store unique pair
+                // hashset to store each pair
                 HashSet<KeyValuePair<int, int>> setPair = new HashSet<KeyValuePair<int, int>>();
 
-                // Pick all elements one by one
+                // select elements one by one
                 for (int i = 0; i < n; i++)
                 {
-                    // check if there is a pair of this picked element
+                    // check for a pair of the picked element
                     for (int j = i + 1; j < n; j++)
                     {
                         if (no[i] - no[j] == s || no[j] - no[i] == s)
                         {
-                            // adding pair to set. Duplicate pair will not be added
+                            // pair added to the set. Duplicates won't be added
                             setPair.Add(new KeyValuePair<int, int>(no[i], no[j]));
                         }
                     }
@@ -117,7 +117,7 @@ namespace Assignment_1_SP21
                     Console.WriteLine(pair);
                 }
 
-                // returning the count of total pairs in set
+                // returning total pairs count in set
                 return setPair.Count;
             }
             catch (Exception e)
@@ -133,18 +133,18 @@ namespace Assignment_1_SP21
             {
                 // initialize count value
                 int count = 0;
-                // iterate array elements
+                // iterate over array elements
                 for (int i = 0; i < email.Length; i++)
                 {
-                    // get names
+                    // get the given names
                     string[] names = email[i].Split('@');
-                    //get local name for processing
+                    //get the local names for processing
                     string localName = names[0];
 
-                    // parse the local name
+                    // parse local name
                     for (int j = 0; j < localName.Length; j++)
                     {
-                        // replace the . character with emplty character
+                        // replace the '.' character with empty character
                         if (localName[j] == '.')
                         {
                             localName = localName.Replace(@".", string.Empty);
@@ -152,19 +152,19 @@ namespace Assignment_1_SP21
                             j--;
                         }
 
-                        //trim the string after + symbol
+                        // trim the string after '+' symbol
                         if (localName[j] == '+')
                         {
                             localName = localName.Substring(0, localName.IndexOf("+") + 0);
                         }
                     }
 
-                    // get unique mails count
+                    // get count of unique mails
                     email[i] = localName + "@" + names[1];
 
                 }
 
-                // get the distinct eamils
+                // get distinct eamils
                 count = email.Distinct().Count();
 
                 // return the count
@@ -183,13 +183,13 @@ namespace Assignment_1_SP21
             {
                 var baseCities = new HashSet<string>();
 
-                //Build set of cities that lead somewhere else
+                // building cities set that lead somewhere else
                 foreach (var r in path)
                 {
                     baseCities.Add(r[0]);
                 }
 
-                //Find a path that doesn't appear in the list of cities that go somewhere
+                // find a path that doesn't appear in the list of cities that go somewhere
                 foreach (var r in path)
                 {
                     if (!baseCities.Contains(r[1]))
@@ -221,7 +221,7 @@ namespace Assignment_1_SP21
             Console.WriteLine();
 
             //Question 3:
-            Console.WriteLine("Q3 : Enter the number to check if squareSums exist:");
+            Console.WriteLine("Q3 Example 1: Enter the number to check if squareSums exist:");
             int n3 = Convert.ToInt32(Console.ReadLine());
 
             bool retVal = SquareSums(n3);
@@ -236,12 +236,29 @@ namespace Assignment_1_SP21
             Console.WriteLine();
 
             //Question 4:
-            int[] arr = { 1, 2, 3, 4, 5 };
-            Console.WriteLine("Q4: Enter the absolute difference to check");
-            int k = Convert.ToInt32(Console.ReadLine());
+            //Example 1:
+            int[] arr1 = { 3, 1, 4, 1, 5 };
+            Console.WriteLine("Q4 Example 1: Enter the absolute difference to check");
+            int k1 = Convert.ToInt32(Console.ReadLine());
 
-            int n4 = DiffPairs(arr, k);
-            Console.WriteLine("There exists {0} pairs with the given difference", n4);
+            int n4Ex1 = DiffPairs(arr1, k1);
+            Console.WriteLine("There exists {0} pairs with the given difference", n4Ex1);
+
+            //Example 2:
+            int[] arr2 = { 1, 2, 3, 4, 5 };
+            Console.WriteLine("\nQ4 Example 2: Enter the absolute difference to check");
+            int k2 = Convert.ToInt32(Console.ReadLine());
+
+            int n4Ex2 = DiffPairs(arr2, k2);
+            Console.WriteLine("There exists {0} pairs with the given difference", n4Ex2);
+
+            //Example 3:
+            int[] arr3 = { 1, 3, 1, 5, 4 };
+            Console.WriteLine("\nQ4 Example 3: Enter the absolute difference to check");
+            int k3 = Convert.ToInt32(Console.ReadLine());
+
+            int n4Ex3 = DiffPairs(arr3, k3);
+            Console.WriteLine("There exists {0} pairs with the given difference", n4Ex3);
 
             //Question 5:
             List<string> mails = new List<string>();
@@ -255,17 +272,31 @@ namespace Assignment_1_SP21
             Console.WriteLine("The number of unique emails is: " + ans5);
 
             //Quesiton 6:
-            List<List<string>> paths = new List<List<string>>();
-            List<string> a = new List<string> { "B", "C" };
-            List<string> b = new List<string> { "D", "B" };
-            List<string> c = new List<string> { "C", "A" };
-            paths.Add(a);
-            paths.Add(b);
-            paths.Add(c);
+            //Example 1:
+            List<List<string>> paths1 = new List<List<string>>();
+            List<string> a1 = new List<string> { "London", "New York" };
+            List<string> b1 = new List<string> { "New York", "Tampa" };
+            List<string> c1 = new List<string> { "Delhi", "London" };
+            paths1.Add(a1);
+            paths1.Add(b1);
+            paths1.Add(c1);
 
-            string destination = DestCity(paths);
-            Console.WriteLine("\nQ6");
-            Console.WriteLine("Destination city is: " + destination);
+            string destination1 = DestCity(paths1);
+            Console.WriteLine("\nQ6 Example 1");
+            Console.WriteLine("Destination city is: " + destination1);
+
+            //Example 2:
+            List<List<string>> paths2 = new List<List<string>>();
+            List<string> a2 = new List<string> { "B", "C" };
+            List<string> b2 = new List<string> { "D", "B" };
+            List<string> c2 = new List<string> { "C", "A" };
+            paths2.Add(a2);
+            paths2.Add(b2);
+            paths2.Add(c2);
+
+            string destination2 = DestCity(paths2);
+            Console.WriteLine("\nQ6 Example 2");
+            Console.WriteLine("Destination city is: " + destination2);
 
         }
     }
